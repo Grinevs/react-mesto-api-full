@@ -1,0 +1,16 @@
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  width: 100%;
+}
+
+@media all and (max-width: 740px) {
+  .profile {
+    flex-direction: column;
+    justify-content: center;
+    align-self: inherit;
+    width: 282px;
+  }
+}

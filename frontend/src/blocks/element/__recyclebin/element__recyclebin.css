@@ -1,0 +1,20 @@
+.element__recyclebin {
+  width: 18px;
+  height: 19px;
+  background-image: url(../../../images/tr.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 23px;
+  right: 18px;
+  z-index: 6;
+  display: block;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.element__recyclebin:hover {
+  opacity: .6;
+}

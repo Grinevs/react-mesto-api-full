@@ -1,0 +1,9 @@
+.popup_photo__title {
+  overflow: visible;
+  color: white;
+  padding-left: 4px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: normal;
+}

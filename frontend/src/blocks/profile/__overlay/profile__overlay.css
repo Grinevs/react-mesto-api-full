@@ -1,0 +1,7 @@
+.profile__overlay {
+  background-image: url("../../../images/edit.svg") ;
+  background-repeat: no-repeat;
+  opacity: 1;
+  background-position:center;
+  background-size: 25%;
+}

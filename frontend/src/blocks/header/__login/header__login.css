@@ -1,0 +1,10 @@
+.header__login {
+  text-align: center;
+  font-size: 14px;
+  line-height: 17px;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+};

@@ -1,0 +1,10 @@
+.popup_delete__close-icon {
+  top: -110px;
+}
+
+@media all and (max-width: 645px) {
+  .popup_delete__close-icon {
+    top: -40px;
+    left: calc(100vw - 20%);
+  }
+}

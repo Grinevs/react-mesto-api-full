@@ -1,0 +1,14 @@
+.logo { 
+  object-fit: cover;
+  width: 142px;
+  height: 34px;
+}
+
+@media all and (max-width: 945px) {
+  .logo {
+    margin-left: 28px;
+    width: 104px;
+    height: 24px;
+    margin-bottom: 32px;
+  }
+}

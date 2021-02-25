@@ -1,0 +1,10 @@
+.popup_avatar__close-icon {
+  top: -150px;
+}
+
+@media all and (max-width: 645px) {
+  .popup_avatar__close-icon {
+    top: -40px;
+    left: calc(100vw - 20%);
+  }
+}

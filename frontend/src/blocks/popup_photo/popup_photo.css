@@ -1,0 +1,7 @@
+@media all and (max-width: 645px) {
+  .popup_photo {
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px ;
+  }
+}

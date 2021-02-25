@@ -1,0 +1,7 @@
+.popup_infotooltip__title {
+  white-space: pre-wrap;
+  text-align: center;
+  margin-top: 200px;
+  z-index: 15;
+  overflow: visible;
+};

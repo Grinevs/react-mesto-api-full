@@ -1,0 +1,17 @@
+.elements__list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px 20px;
+  box-sizing: border-box;
+  margin: 48px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+@media all and (max-width: 595px) {
+  .elements__list {
+    gap: 18px 0;
+  }
+}
+

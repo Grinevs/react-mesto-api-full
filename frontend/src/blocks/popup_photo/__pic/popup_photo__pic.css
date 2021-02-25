@@ -1,0 +1,6 @@
+.popup_photo__pic {
+  object-fit: contain;
+  max-width: 75vw;
+  max-height: 75vh;
+  overflow: hidden;
+}

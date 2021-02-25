@@ -1,0 +1,22 @@
+.popup__edit {
+  z-index: 10;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  background: #fff;
+  width: 100%;
+  outline: none;
+  font-size: 14px;
+  line-height: 17px;
+  padding-bottom: 13px;
+  box-sizing: border-box;
+} 
+
+
+
+.popup__edit:focus {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+
+

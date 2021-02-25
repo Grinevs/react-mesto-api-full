@@ -1,0 +1,22 @@
+.footer {
+  display: block;
+  max-width: 882px;
+  margin:0 auto 0 auto;
+  background-color: black;
+}
+
+@media all and (max-width: 945px) {
+  .footer {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+}
+
+@media all and (max-width: 330px) {
+  .footer {
+    margin-left: 2vw;
+    margin-right: 2vw;
+  }
+}
+
+
