@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import { Redirect } from 'react-router';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -205,19 +204,19 @@ function App() {
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
           <Switch>
+          <Route exact path="/sign-in">
+              <Header linkTitle="Регистрация" pushTo="/sign-up" />
+              <Main
+                type="sign-in"
+                onLoginUser={handleLoginUser}
+                loggedIn={loggedIn}
+              />
+            </Route>
             <Route exact path="/sign-up">
               <Header linkTitle="Войти" pushTo="/sign-in" />
               <Main
                 type="sign-up"
                 onRegisterUser={handleRegisterUser}
-                loggedIn={loggedIn}
-              />
-            </Route>
-            <Route exact path="/sign-in">
-              <Header linkTitle="Регистрация" pushTo="/sign-up" />
-              <Main
-                type="sign-in"
-                onLoginUser={handleLoginUser}
                 loggedIn={loggedIn}
               />
             </Route>
@@ -236,9 +235,6 @@ function App() {
               userEmail={userEmail}
               clicKSignOut={signOut}
             />
-            <Route exact path="*">
-              {!loggedIn && <Redirect to="/sign-in" />}
-            </Route>
           </Switch>
         <Footer />
         <EditProfilePopup

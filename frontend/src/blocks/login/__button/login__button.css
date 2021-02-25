@@ -11,8 +11,8 @@
   font-size: 18px;
   line-height: 22px;
   z-index: 15;
-};
+}
 
 .login__button:hover {
   background: rgba(255, 255, 255, 0.8);
-};
+}

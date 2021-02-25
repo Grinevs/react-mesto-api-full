@@ -21,7 +21,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "lint": "eslint --fix --ext .js,.jsx ."
+    "lint": "eslint --fix --ext .js,.jsx .",
+    "deployServer": "npm run build && scp -r ./build/* accsergey@84.252.130.195:/home/accsergey/frontend/build" 
   },
   "eslintConfig": {
     "extends": [

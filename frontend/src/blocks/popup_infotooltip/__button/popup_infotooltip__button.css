@@ -13,8 +13,8 @@
   z-index: 15;
   color: black;
   z-index: 11;
-};
+}
 
 .popup_infotooltip__button:hover {
   background: rgba(255, 255, 255, 0.8);
-};
+}
