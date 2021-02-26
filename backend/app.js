@@ -27,14 +27,6 @@ const jsonParser = bodyParser.json();
 
 app.use(requestLogger);
 
-app.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required().min(3),
-  }).unknown(true),
-}),
-jsonParser, login);
-
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -42,6 +34,14 @@ app.post('/signup', celebrate({
   }).unknown(true),
 }),
 jsonParser, createUser);
+
+app.post('/signin', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    password: Joi.string().required().min(3),
+  }).unknown(true),
+}),
+jsonParser, login);
 
 app.use(auth);
 
