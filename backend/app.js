@@ -43,10 +43,8 @@ app.post('/signin', celebrate({
 }),
 jsonParser, login);
 
-app.use(auth);
-
-app.use('/', routerUsers);
-app.use('/', routerCards);
+app.use('/', auth, routerUsers);
+app.use('/', auth, routerCards);
 
 app.use(errorLogger);
 
