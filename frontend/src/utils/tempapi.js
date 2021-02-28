@@ -40,7 +40,7 @@ class TempApi {
 }
 
 const configApi = {
-  url: 'http://localhost:3000',
+  url: 'http://api.grinev.students.nomoredomains.icu',
   headers: { 'Content-Type': 'application/json' },
 };
 

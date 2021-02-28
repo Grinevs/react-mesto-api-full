@@ -25,10 +25,9 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 const jsonParser = bodyParser.json();
+app.use(cors());
 
 app.use(requestLogger);
-
-app.use(cors());
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -45,6 +44,12 @@ app.post('/signin', celebrate({
   }).unknown(true),
 }),
 jsonParser, login);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.use('/', auth, routerUsers);
 app.use('/', auth, routerCards);
