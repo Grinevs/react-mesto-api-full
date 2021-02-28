@@ -82,7 +82,7 @@ class Api {
 }
 
 const configApi = {
-  url: 'http://api.ggg.students.nomoredomains.icu',
+  url: 'https://api.ggg.students.nomoredomains.icu',
   headers: { 'Content-Type': 'application/json' },
 };
 
