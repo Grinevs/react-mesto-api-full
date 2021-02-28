@@ -27,6 +27,7 @@ const app = express();
 const jsonParser = bodyParser.json();
 
 app.use(cors());
+app.options('*', cors());
 
 app.use(requestLogger);
 
