@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-let cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const { celebrate, Joi } = require('celebrate');
@@ -24,10 +24,16 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-const jsonParser = bodyParser.json();
-
 app.use(cors());
 app.options('*', cors());
+
+app.all('*', ((req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With');
+  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
+}));
+
+const jsonParser = bodyParser.json();
 
 app.use(requestLogger);
 
