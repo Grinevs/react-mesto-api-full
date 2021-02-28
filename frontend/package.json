@@ -22,7 +22,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "lint": "eslint --fix --ext .js,.jsx .",
-    "deployServer": "npm run build && scp -r ./build/* accsergey@84.252.130.195:/home/accsergey/frontend/build" 
+    "deployServer": "npm run build && scp -r ./build/* accsergey@178.154.227.249:/home/accsergey/react-mesto-api-full/frontend/build" 
   },
   "eslintConfig": {
     "extends": [
