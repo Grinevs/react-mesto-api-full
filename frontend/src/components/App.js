@@ -24,7 +24,7 @@ function App() {
   React.useEffect(() => {
     const token = localStorage.getItem('token');
     // eslint-disable-next-line no-unused-expressions
-    (token && loggedIn)
+    (token)
       && tempapi
         .getJWT(token)
         .then((data) => {
