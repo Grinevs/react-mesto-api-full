@@ -8,9 +8,8 @@ export default function Cards(props) {
     props.onImgClick(props.card);
   }
 
-  // eslint-disable-next-line max-len
-  const isLiked = (props.card.likes) ? props.card.likes.some((i) => i._id === currentUser._id) : false;
-  const isOwn = (props.card.owner) ? props.card.owner._id === currentUser._id : false;
+  const isLiked = (props.card.likes.some((i) => i === currentUser._id));
+  const isOwn = props.card.owner === currentUser._id;
 
   function handleLikeClick() {
     props.onCardLike(props.card);

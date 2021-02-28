@@ -40,7 +40,7 @@ class TempApi {
 }
 
 const configApi = {
-  url: 'https://auth.nomoreparties.co',
+  url: 'http://localhost:3000',
   headers: { 'Content-Type': 'application/json' },
 };
 

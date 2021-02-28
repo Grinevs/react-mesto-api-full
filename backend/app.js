@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const { celebrate, Joi } = require('celebrate');
@@ -26,6 +27,8 @@ const app = express();
 const jsonParser = bodyParser.json();
 
 app.use(requestLogger);
+
+app.use(cors());
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({

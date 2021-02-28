@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 class Api {
   constructor(config) {
     this._url = config.url;
@@ -46,36 +47,20 @@ class Api {
       .then((res) => this._checkRequest(res));
   }
 
-  addLike(cardId) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
-      method: 'PUT',
-      headers: this._headers,
-    })
-      .then((res) => this._checkRequest(res));
-  }
-
   changeLikeCardStatus(cardId, isLiked) {
     if (isLiked) {
-      return fetch(`${this._url}/cards/likes/${cardId}`, {
+      return fetch(`${this._url}/cards/${cardId}/likes/`, {
         method: 'DELETE',
         headers: this._headers,
       })
         .then((res) => this._checkRequest(res));
+    } else {
+      return fetch(`${this._url}/cards/${cardId}/likes/`, {
+        method: 'PUT',
+        headers: this._headers,
+      })
+        .then((res) => this._checkRequest(res));
     }
-
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
-      method: 'PUT',
-      headers: this._headers,
-    })
-      .then((res) => this._checkRequest(res));
-  }
-
-  removeLike(cardId) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
-      method: 'DELETE',
-      headers: this._headers,
-    })
-      .then((res) => this._checkRequest(res));
   }
 
   editUserAvatar(data) {
@@ -97,8 +82,8 @@ class Api {
 }
 
 const configApi = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-16',
-  headers: { authorization: '070b2a82-6a1e-49d9-8bec-07436830ab2d', 'Content-Type': 'application/json' },
+  url: 'http://localhost:3000',
+  headers: { 'Content-Type': 'application/json' },
 };
 
 const api = new Api(configApi);

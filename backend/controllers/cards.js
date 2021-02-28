@@ -17,10 +17,10 @@ const createCard = (req, res, next) => {
 const deleteCard = (req, res, next) => {
   Card.findByIdAndDelete(req.params.id)
     .then((card) => {
-      if (card && (req.user._id === card.owner._id)) {
+      if (card) {
         return res.send(card);
       }
-      throw new NotFoundError('Карта не найдена');
+      throw new NotFoundError('Карта не найдена!');
     })
     .catch(next);
 };

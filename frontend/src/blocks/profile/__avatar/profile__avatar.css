@@ -3,6 +3,7 @@
   width: 127px;
   height: 127px;
   cursor: pointer;
+  object-fit: cover;
 }
 
 .profile__avatar:hover {

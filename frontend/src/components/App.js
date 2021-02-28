@@ -19,30 +19,7 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const history = useHistory();
   const [userEmail, setUserEmail] = React.useState('');
-
-  React.useEffect(() => {
-    api
-      .getUserProfile()
-      .then((getUser) => {
-        setCurrentUser(getUser);
-      })
-      .catch((err) => {
-        console.log('Ошибка. Запрос не выполнен: ', err);
-      });
-  }, []);
-
   const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cardsInit) => {
-        setCards(cardsInit);
-      })
-      .catch((err) => {
-        console.log('Ошибка. Запрос не выполнен: ', err);
-      });
-  }, []);
 
   React.useEffect(() => {
     const token = localStorage.getItem('token');
@@ -51,13 +28,23 @@ function App() {
       && tempapi
         .getJWT(token)
         .then((data) => {
-          setUserEmail(data.data.email);
+          api._headers = ({ Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' });
+          setUserEmail(data.email);
           setLoggedIn(true);
+          setCurrentUser(data);
+          api
+            .getInitialCards()
+            .then((cardsInit) => {
+              setCards(cardsInit);
+            })
+            .catch((err) => {
+              console.log('Ошибка. Запрос не выполнен: ', err);
+            });
         })
         .catch((err) => {
           console.log('Ошибка. Запрос не выполнен: ', err);
         });
-  }, []);
+  }, [loggedIn]);
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(
     false,
@@ -104,9 +91,8 @@ function App() {
     api
       .editUserProfile(data)
       .then((user) => {
-        setCurrentUser(data);
         closeAllPopups();
-        setCurrentUser(user);
+        setCurrentUser(user.data);
       })
       .catch((err) => {
         console.log('Ошибка. Запрос не выполнен: ', err);
@@ -114,7 +100,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
@@ -154,7 +140,7 @@ function App() {
     api
       .addNewCard(newCard)
       .then((data) => {
-        setCards([data, ...cards]);
+        setCards([data.data, ...cards]);
       })
       .then(() => {
         closeAllPopups();
@@ -184,9 +170,9 @@ function App() {
       .authUser(userData)
       .then((data) => {
         localStorage.setItem('token', data.token);
-        setLoggedIn(true);
         setUserEmail(userData.email);
         history.push('/');
+        setLoggedIn(true);
       })
       .catch((err) => {
         setInfoToolTip(true);
