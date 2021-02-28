@@ -24,7 +24,7 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-const urls = ['http://ggg.students.nomoredomains.icu', 'http://www.ggg.students.nomoredomains.icu', 'http://localhost:3000'];
+const urls = ['https://ggg.students.nomoredomains.icu', 'https://www.ggg.students.nomoredomains.icu', 'http://localhost:3000', 'http://ggg.students.nomoredomains.icu', 'http://www.ggg.students.nomoredomains.icu'];
 
 app.use(cors({
   origin: urls,
