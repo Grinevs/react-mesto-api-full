@@ -22,16 +22,21 @@ const createUser = (req, res, next) => {
   const {
     name, about, avatar, email,
   } = req.body;
-  User.findOne({ email }).then(() => {
-    throw new AlreadyExistError('Пользователь уже существует');
+  User.findOne({ email }).then((user) => {
+    if (user) {
+      throw new AlreadyExistError('Пользователь уже существует');
+    }
   })
     .catch((next));
   bcrypt.hash(req.body.password, 10)
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    .then(() => res.send({
-      name, about, avatar, email,
+    .then((data) => res.send({
+      name: data.name,
+      about: data.about,
+      avatar: data.avatar,
+      email: data.email,
     }))
     .catch((next));
 };
