@@ -1,5 +1,6 @@
 const Card = require('../models/card');
 const NotFoundError = require('../errors/not-found-err');
+const ForbiddenError = require('../errors/forbidden-error');
 
 const getCards = (req, res, next) => {
   Card.find({})
@@ -15,6 +16,10 @@ const createCard = (req, res, next) => {
 };
 
 const deleteCard = (req, res, next) => {
+  Card.findById(req.params.id).then(() => {
+    throw new ForbiddenError('нет доступа');
+  })
+    .catch((next));
   Card.findByIdAndDelete(req.params.id)
     .then((card) => {
       if (card) {

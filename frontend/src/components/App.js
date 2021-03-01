@@ -92,7 +92,7 @@ function App() {
       .editUserProfile(data)
       .then((user) => {
         closeAllPopups();
-        setCurrentUser(user.data);
+        setCurrentUser({ ...currentUser, name: user.name, about: user.about });
       })
       .catch((err) => {
         console.log('Ошибка. Запрос не выполнен: ', err);

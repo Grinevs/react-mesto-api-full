@@ -13,12 +13,16 @@ const jsonParser = bodyParser.json();
 
 routerUsers.get('/users', findAllUsers);
 routerUsers.get('/users/me', getUserInfo);
-routerUsers.get('/users/:id', findUserById);
+routerUsers.get('/users/:id', celebrate({
+  params: Joi.object().keys({
+    id: Joi.string().required().length(24).regex(/^[0-9a-f]+$/),
+  }).unknown(true),
+}), findUserById);
 routerUsers.patch('/users/me', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    about: Joi.string().required().min(2),
-  }).unknown(true),
+    about: Joi.string().required().min(2).max(30),
+  }),
 }),
 jsonParser, updateProfile);
 routerUsers.patch('/users/me/avatar', celebrate({

@@ -19,8 +19,20 @@ routerCards.post('/cards', celebrate({
   }).unknown(true),
 }),
 jsonParser, createCard);
-routerCards.delete('/cards/:id', deleteCard);
-routerCards.put('/cards/:id/likes', addLike);
-routerCards.delete('/cards/:id/likes', removeLike);
+routerCards.delete('/cards/:id', celebrate({
+  params: Joi.object().keys({
+    id: Joi.string().required().length(24).regex(/^[0-9a-f]+$/),
+  }).unknown(true),
+}), deleteCard);
+routerCards.put('/cards/:id/likes', celebrate({
+  params: Joi.object().keys({
+    id: Joi.string().required().length(24).regex(/^[0-9a-f]+$/),
+  }).unknown(true),
+}), addLike);
+routerCards.delete('/cards/:id/likes', celebrate({
+  params: Joi.object().keys({
+    id: Joi.string().required().length(24).regex(/^[0-9a-f]+$/),
+  }).unknown(true),
+}), removeLike);
 
 module.exports = routerCards;

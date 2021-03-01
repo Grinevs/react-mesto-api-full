@@ -7,9 +7,8 @@ export default function Cards(props) {
   function handleClick() {
     props.onImgClick(props.card);
   }
-
-  const isLiked = (props.card.likes.some((i) => i === currentUser._id));
-  const isOwn = props.card.owner === currentUser._id;
+  const isOwn = (props.card.owner === (currentUser._id));
+  const isLiked = (props.card.likes.some((i) => (i === currentUser._id)));
 
   function handleLikeClick() {
     props.onCardLike(props.card);

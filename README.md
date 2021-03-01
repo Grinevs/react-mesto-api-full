@@ -3,4 +3,6 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке. 
 
-http://ggg.students.nomoredomains.icu/
+IP адрес сайта 178.154.227.249
+Доменное имя сайта https://ggg.students.nomoredomains.icu/
+доменное имя backend'a https://api.ggg.students.nomoredomains.icu/

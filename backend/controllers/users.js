@@ -1,7 +1,9 @@
+/* eslint-disable quote-props */
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotFoundError = require('../errors/not-found-err');
+const AlreadyExistError = require('../errors/already-exist-error');
 const AuthError = require('../errors/auth-error');
 
 const getUserInfo = (req, res, next) => {
@@ -20,6 +22,10 @@ const createUser = (req, res, next) => {
   const {
     name, about, avatar, email,
   } = req.body;
+  User.findOne({ email }).then(() => {
+    throw new AlreadyExistError('Пользователь уже существует');
+  })
+    .catch((next));
   bcrypt.hash(req.body.password, 10)
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
@@ -49,13 +55,20 @@ const findUserById = (req, res, next) => {
 
 const updateProfile = (req, res, next) => {
   const { name, about } = req.body;
-  User.findByIdAndUpdate(req.user._id, { name, about },
-    {
-      new: true,
-      runValidators: true,
-    })
-    .then((user) => res.send({ data: user }))
-    .catch((next));
+  // eslint-disable-next-line no-unused-expressions
+  (name && about)
+    ? User.findByIdAndUpdate(req.user._id, { name, about },
+      {
+        new: true,
+        runValidators: true,
+      })
+      .then((user) => {
+        if (user) {
+          return res.send(user);
+        }
+        throw new NotFoundError('Юзер не найден');
+      })
+      .catch((next)) : res.status(400).send({ message: 'ошибка валидации' });
 };
 
 const updateAvatar = (req, res, next) => {

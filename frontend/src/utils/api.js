@@ -82,8 +82,9 @@ class Api {
 }
 
 const configApi = {
-  url: 'https://api.ggg.students.nomoredomains.icu',
-  headers: { 'Content-Type': 'application/json' },
+  url: 'http://localhost:3000',
+  // url: 'https://api.ggg.students.nomoredomains.icu',
+  headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
 };
 
 const api = new Api(configApi);
