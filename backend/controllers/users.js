@@ -7,7 +7,6 @@ const AlreadyExistError = require('../errors/already-exist-error');
 const AuthError = require('../errors/auth-error');
 
 const getUserInfo = (req, res, next) => {
-  console.log('sdsds');
   User.findById(req.user._id)
     .then((user) => {
       if (user) {
@@ -87,9 +86,10 @@ const updateAvatar = (req, res, next) => {
     .catch((next));
 };
 
+let userId;
+
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  let userId;
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {

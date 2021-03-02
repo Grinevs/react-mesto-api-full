@@ -42,24 +42,23 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.post('/signup', celebrate({
+app.post('/signup', jsonParser, celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(3),
-    name: Joi.string().required().min(2),
-    about: Joi.string().required().min(2),
-    avatar: Joi.string().required(),
-  }).unknown(true),
+    name: Joi.string().min(2),
+    about: Joi.string().min(2),
+    avatar: Joi.string(),
+  }).unknown(false),
 }),
-jsonParser, createUser);
+createUser);
 
-app.post('/signin', celebrate({
+app.post('/signin', jsonParser, celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(3),
-  }).unknown(true),
-}),
-jsonParser, login);
+  }).unknown(),
+}), login);
 
 app.use('/', auth, routerUsers);
 app.use('/', auth, routerCards);

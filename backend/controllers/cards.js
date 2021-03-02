@@ -16,18 +16,25 @@ const createCard = (req, res, next) => {
 };
 
 const deleteCard = (req, res, next) => {
-  Card.findById(req.params.id).then(() => {
-    throw new ForbiddenError('нет доступа');
-  })
-    .catch((next));
-  Card.findByIdAndDelete(req.params.id)
+  Card.findById(req.params.id)
     .then((card) => {
-      if (card) {
-        return res.send(card);
+      if (!card) {
+        throw new NotFoundError('Карта не найдена!');
       }
-      throw new NotFoundError('Карта не найдена!');
+      if (String(req.user._id) === String(card.owner)) {
+        Card.findByIdAndDelete(req.params.id)
+          .then((delcard) => {
+            if (delcard) {
+              return res.send(delcard);
+            }
+            throw new NotFoundError('Карта не найдена!');
+          })
+          .catch(next);
+      } else {
+        throw new ForbiddenError('нет доступа!');
+      }
     })
-    .catch(next);
+    .catch((next));
 };
 
 const addLike = (req, res, next) => {
